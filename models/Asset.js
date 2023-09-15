@@ -18,6 +18,10 @@ const assetSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  unitsSold: {
+    type: Number,
+    default: 0,
+  },
 
   created_at: { type: Date, default: Date.now },
 });
