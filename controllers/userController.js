@@ -8,8 +8,24 @@ const signToken = (id, expires) => {
 };
 export const userLogin = async (req, res) => {
   try {
+    const name = req.body.name;
+    const password = req.body.password;
+
+    let user = await User.findOne({ name: name });
+    if (!user || !(await user.correct_password(password, user.password))) {
+      return res.status(400).json({
+        status: "fail",
+        message: "incorrect email or password",
+      });
+    }
+
+    const token = signToken(String(user._id), "12h");
+    user.password = null;
+
     return res.status(200).json({
       message: "success",
+      user,
+      token,
     });
   } catch (err) {
     console.log("err in user login ", err);
