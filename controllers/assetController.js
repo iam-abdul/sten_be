@@ -42,7 +42,7 @@ export const purchaseAsset = async (req, res) => {
     try {
       const purchasedItem = await Asset.findOneAndUpdate(
         { name: assetName },
-        { $inc: { unitsSold: 1 } },
+        { $inc: { unitsSold: 1, quantity: -1 } },
         { session, upsert: false, new: true }
       );
 
