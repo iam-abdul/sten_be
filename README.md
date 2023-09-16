@@ -9,6 +9,10 @@
 - npm i
 - npm run dev
 
+#### instructions to test the app concurrency
+- the purchase route is protected and requires user JWT token
+- before hitting the route, login into the app and use the obtained token in response to hit the purchase route with any load testing tool
+
 
 ## Features
 
